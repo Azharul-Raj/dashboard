@@ -1,5 +1,3 @@
-import { Providers } from '@/redux/Providers'
-import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
@@ -17,13 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" >
-      <body suppressHydrationWarning={true} className={inter.className}>
-        <Providers>
-          <div className="">
-            {children}
-          </div>
-        </Providers>
-      </body>
+      <body suppressHydrationWarning={true} className={inter.className}>{children}</body>
     </html>
   )
 }
