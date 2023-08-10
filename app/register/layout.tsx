@@ -1,11 +1,9 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Admin Dashboard',
-  description: 'This is the admin dashboard of the application.',
+  title: 'Register Page',
+  description: 'This is the register page of your app.',
 }
 
 export default function RootLayout({
@@ -14,8 +12,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" >
-      <body suppressHydrationWarning={true} className={inter.className}>{children}</body>
-    </html>
+      <section>
+          <div className="">
+            {children}
+          </div>
+      </section>
   )
 }
