@@ -13,7 +13,7 @@ interface InputProps{
 function Input({id,label,type,required,errors,register}:InputProps) {
   return (
     <div className="w-full py-2">
-        <label className='text-gray-900 block pb-1 text-xl font-semibold'>{label}</label>
+        <label className='text-gray-900 block pb-1 text-lg font-semibold'>{label}</label>
       <input className='py-2 w-full px-1 border border-gray-700 rounded-[8px] focus:outline-none' id={id} type={type?type:'text'} {...register(id,{required})} />
       {errors && <p>{errors.root?.message}</p> }
     </div>
