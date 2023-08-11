@@ -2,7 +2,7 @@
 
 import { Poppins } from 'next/font/google';
 import { useState } from 'react'
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import FormHeading from './components/form/FormHeading';
 import Input from './components/form/Input';
 import Option from './components/form/Option';
@@ -11,6 +11,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import success from '../assets/Frame.svg';
+import PasswordInput from './components/form/PasswordInput';
 
 const poppins=Poppins({subsets:['latin'],weight:['200','400','500']})
 
@@ -22,21 +23,21 @@ enum STEPS {
 
 export default function RegisterPage() {
     const { formState: { errors }, handleSubmit, register } = useForm<FieldValues>()
-    const [data, setData] = useState();
+    const [isPassword,setIsPassword]=useState(true)
     const [step, setStep] = useState(STEPS.PERSONAL);
     const [stepsArray, setStepsArray] = useState<number[]>([1])
     //OnNext function
     const onNext = () => {
         setStep(value => value + 1)
     }
-
+    
     const onSubmit = (data: any) => {
         setStepsArray(previous => [...previous, step + 1])
         console.log(step)
         if (step !== STEPS.SECURITY) {
             return onNext()
         }
-        console.log(data)
+
         return onNext()
     }
     let formBody;
@@ -44,8 +45,8 @@ export default function RegisterPage() {
         formBody =
             <>
                 <FormHeading heading='Personal Information' />
-                <Input label='Full Name' register={register} id='name' required errors={errors} />
-                <Input label='Email Address' register={register} id='email' required errors={errors} />
+                <Input placeholder='Type your Name' label='Full Name' register={register} id='name' required errors={errors} />
+                <Input placeholder='Your Email' label='Email Address' type='email' register={register} id='email' required errors={errors} />
                 <Option label='Position' required id='position' register={register} options={['Student', 'Teacher']} errors={errors} />
                 <Option label='Institute Name' required id='institute' register={register} options={institutes} errors={errors} />
                 <Option label='Education Level' required id='level' register={register} options={levels} errors={errors} />
@@ -55,8 +56,8 @@ export default function RegisterPage() {
         formBody =
             <>
                 <FormHeading heading='Security' />
-                <Input label='Password' register={register} type='password' id='password' required errors={errors} />
-                <Input label='Confirm Password' register={register} type='password' id='confirm-password' required errors={errors} />
+                <PasswordInput id='password' label='Password' type={isPassword?'password':'text'} placeholder='Your Password' register={register} required isPassword={isPassword} setIsPassword={setIsPassword}/>
+                <PasswordInput id='confirm-pass' label='Confirm Password' type={isPassword?'password':'text'} placeholder='Confirm Password' register={register} required isPassword={isPassword} setIsPassword={setIsPassword}/>
             </>
     }
     if (step === STEPS.CONFIRM) {
@@ -73,13 +74,9 @@ export default function RegisterPage() {
             </div>
             </>
     }
-    console.log(stepsArray)
     return (
         // <ClientOnly>
-        <section className="flex min-h-screen flex-col items-center my-[5%]">
-            <h1>This is the header.</h1>
-            {/* Form heading part */}
-            <div className="">
+        <section className="flex min-h-screen flex-col items-center my-[2%]">
                 {/* First icon part */}
                 <div className=" flex justify-between items-center">
                     {
@@ -98,7 +95,6 @@ export default function RegisterPage() {
                     }
                     
                 </div>
-            </div>
             {/* The form will be here */}
             <div className="w-full md:flex justify-center items-center ">
                 <form className='mx-2 lg:w-[600px]' onSubmit={handleSubmit(onSubmit)} >

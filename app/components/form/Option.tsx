@@ -6,7 +6,7 @@ interface OptionProps{
     register:UseFormRegister<FieldValues>
     required:boolean;
     options?:string[];
-    errors:FieldErrors<FieldValues>
+    errors?:FieldErrors<FieldValues>
 }
 
 function Option({id,label,register,errors,options,required}:OptionProps) {
