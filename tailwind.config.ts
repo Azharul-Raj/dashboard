@@ -15,7 +15,7 @@ const config: Config = {
       },
       colors:{
         'form-primary':'#6078EA'
-      }
+      },
     },
   },
   plugins: [],

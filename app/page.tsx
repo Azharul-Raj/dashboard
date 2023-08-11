@@ -1,4 +1,6 @@
 "use client"
+
+import { Poppins } from 'next/font/google';
 import { useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import FormHeading from './components/form/FormHeading';
@@ -6,6 +8,11 @@ import Input from './components/form/Input';
 import Option from './components/form/Option';
 import { formParts, institutes, levels } from '@/data';
 import Link from 'next/link';
+import Image from 'next/image';
+
+import success from '../assets/Frame.svg';
+
+const poppins=Poppins({subsets:['latin'],weight:['200','400','500']})
 
 enum STEPS {
     PERSONAL = 1,
@@ -30,6 +37,7 @@ export default function RegisterPage() {
             return onNext()
         }
         console.log(data)
+        return onNext()
     }
     let formBody;
     if (step === STEPS.PERSONAL) {
@@ -54,7 +62,15 @@ export default function RegisterPage() {
     if (step === STEPS.CONFIRM) {
         formBody =
             <>
-
+            <div className="flex flex-col justify-center items-center my-5">
+                <div className="my-8">
+                <Image  className='p-1 w-52 md:w-full bg-blue-300 rounded-full' src={success} alt='Success Image'/>
+                </div>
+                <h4 className='text-2xl text-gray-800 font-semibold my-2'>Thank You!</h4>
+                <div className="lg:w-[45%] text-center">
+                <p className={`${poppins.className} font-[400] text-gray-700 md:text-[18px]`}>Account Has Been Created. Enjoy Job Task.</p>
+                </div>
+            </div>
             </>
     }
     console.log(stepsArray)
@@ -74,7 +90,7 @@ export default function RegisterPage() {
                                     <p className={`py-1 px-[10px] md:py-2 md:px-4 text-sm md:text-base ${stepsArray.includes(id) ? 'text-white' : 'text-[#6078EA]'}`}>{id}</p>
                                 </div>
                                 <div className="items-center flex">
-                                    <div className="h-[1px] mx-2 bg-blue-700 lg:w-20"></div>
+                                    <div className="h-[1px] mx-2 bg-blue-700 md:w-8 lg:w-20"></div>
                                     <p className={`${stepsArray.includes(id + 1) ? 'text-form-primary' : ''} text-sm md:text-[24px] ${id!==3?'mr-3':''}`}>{name}</p>
                                 </div>
                             </div>
@@ -84,15 +100,21 @@ export default function RegisterPage() {
                 </div>
             </div>
             {/* The form will be here */}
-            <div className="flex justify-center items-center ">
-                <form className='w-full mx-2 lg:w-[600px]' onSubmit={handleSubmit(onSubmit)} >
+            <div className="w-full md:flex justify-center items-center ">
+                <form className='mx-2 lg:w-[600px]' onSubmit={handleSubmit(onSubmit)} >
                     {formBody}
-                    <button className='w-full my-2 text-white bg-form-primary rounded-lg py-2' type='submit'>{step === 2 ? 'Confirm' : "Next"}</button>
+                    {step!==3?<button className='w-full my-2 text-white bg-form-primary rounded-lg py-2' type='submit'>{step === 2 ? 'Confirm' : "Next"}</button>
+                :
+                <div className="text-center">
+                <button className='text-base text-form-primary rounded-lg font-semibold py-3 px-8 border-2 border-form-primary'>Go to Home</button>   
+                </div> 
+                }
+
                 </form>
             </div>
-            <div className="">
-                <p className='text-gray-800 font-semibold'>Already Have An Account? <Link href={'/login'} className='text-blue-600'>Log In</Link></p>
-            </div>
+            {step===3 ||<div className="">
+                <p className='text-gray-800 font-semibold'>Already Have An Account? <Link href={'/login'} className='text-blue-600 underline'>Log In</Link></p>
+            </div>}
         </section>
         // </ClientOnly>
     )
