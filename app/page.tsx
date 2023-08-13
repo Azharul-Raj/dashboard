@@ -1,19 +1,23 @@
 "use client"
 
-import { Poppins } from 'next/font/google';
 import { useState } from 'react'
+import Link from 'next/link';
+import Image from 'next/image';
+import { Poppins } from 'next/font/google';
 import { FieldValues, useForm } from 'react-hook-form';
+import axios from 'axios'
+
 import FormHeading from './components/form/FormHeading';
 import Input from './components/form/Input';
 import Option from './components/form/Option';
 import { formParts, institutes, levels } from '@/data';
-import Link from 'next/link';
-import Image from 'next/image';
 
 import success from '../assets/Frame.svg';
 import PasswordInput from './components/form/PasswordInput';
 
 const poppins=Poppins({subsets:['latin'],weight:['200','400','500']})
+
+axios.defaults.baseURL=`https://job-task-server.onrender.com/api/v1`
 
 enum STEPS {
     PERSONAL = 1,
@@ -33,7 +37,6 @@ export default function RegisterPage() {
     
     const onSubmit = (data: any) => {
         setStepsArray(previous => [...previous, step + 1])
-        console.log(step)
         if (step !== STEPS.SECURITY) {
             return onNext()
         }

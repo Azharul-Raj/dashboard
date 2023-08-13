@@ -1,20 +1,31 @@
 "use client"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import FormHeading from '../components/form/FormHeading';
 import Input from '../components/form/Input';
 import PasswordInput from '../components/form/PasswordInput';
 import Link from 'next/link';
+import axios from 'axios';
 
 
 function Login() {
   const {register,handleSubmit,}=useForm();
   const [isPassword,setIsPassword]=useState(true)
+  useEffect(()=>{
 
-  const handleLogin=(data:any)=>{
-    console.log(data)
+  },[])
+  const handleLogin=async(data:any)=>{
+    try {
+      const response=await axios.post('/user/login',data);
+
+      console.log(response.data)
+      console.log('here')
+    } catch (error) {
+      console.log(error)
+    }    
   }
+
   return (
     <section className="flex min-h-screen flex-col items-center my-[2%]">
       <div className="">
