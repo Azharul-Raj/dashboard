@@ -2,7 +2,9 @@ import React from 'react'
 
 function DashboardPage() {
   return (
-    <div>page</div>
+    <div className=''>
+        This is the page
+    </div>
   )
 }
 

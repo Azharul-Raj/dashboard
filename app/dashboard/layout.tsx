@@ -1,27 +1,21 @@
+"use client"
+import {useState} from 'react'
 
-import Image from 'next/image'
+import SideBar from '../components/dashboard/SideBar';
+import DashboardHeader from '../components/dashboard/DashboardHeader';
 
-import search from '../../assets/search.svg'
-
-function DashboardLayout() {
+function DashboardLayout({children}:{children:React.ReactNode}) {
+  const [isOpen,setIsOpen]=useState(false);
   return (
-    <section className='min-h-screen grid grid-cols-12'>
-      {/* TOP BAR */}
-      <div className=" col-span-10 order-1 bg-gradient-to-r from-indigo-500 via-indigo-400 to-indigo-400 h-12">
-        <div className="flex justify-around">
-            <form action="">
-              <div className="py-2 relative">
-                <div className="absolute top-4 left-1">
-                  <Image width={18} src={search} alt='search'/>
-                </div>
-              <input className='focus:outline-none p-1 pl-8 rounded-lg' placeholder='Search here...' type="text" name="" id="" />
-              </div>
-            </form>
+    <section className='flex h-screen overflow-hidden '>
+      {/* SIDEBAR */}
+      <SideBar isOpen={isOpen} setIsOpen={setIsOpen}/>
+      {/* HEADER */}
+      <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden flex-grow">
+        <DashboardHeader isOpen={isOpen} setIsOpen={setIsOpen}/>
+        <div className="">
+          {children}
         </div>
-      </div>
-      {/* LEFT BAR */}
-      <div className="lg:col-span-2 bg-gradient-to-b from-blue-400 via-indigo-400 to-indigo-500 min-h-screen">
-        left
       </div>
     </section>
   )
