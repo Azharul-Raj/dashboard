@@ -2,3 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+.bg-course-complete{
+background: linear-gradient(225deg, #BB65FF 0%, #4C6FFF 100%);
+}
+.bg-course-certificate{
+    background: linear-gradient(225deg, #FFA674 0%, #FF3737 100%);
+}
+.bg-course-progress{
+    background: linear-gradient(225deg, #FF974D 0%, #FFE925 100%);
+}
+.bg-total-course{
+    background: linear-gradient(225deg, #FF974D 0%, #FFE925 100%);
+}

@@ -12,6 +12,7 @@ import Input from './components/form/Input';
 import Option from './components/form/Option';
 import { formParts, institutes, levels } from '@/data';
 
+
 import success from '../assets/Frame.svg';
 import PasswordInput from './components/form/PasswordInput';
 

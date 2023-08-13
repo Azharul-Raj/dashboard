@@ -1,3 +1,5 @@
+import {BiHomeAlt2,BiListUl,BiUser,BiLogOut} from 'react-icons/bi'
+
 export const institutes=[
     "University of Dhaka",
     "University of Rajshahi",
@@ -27,5 +29,28 @@ export const formParts=[
     {
         id:3,
         name:'Confirmation'
+    },
+]
+
+export const navItems=[
+    {
+        name:'Dashboard',
+        url:'/dashboard',
+        Icon:<BiHomeAlt2 size={20}/>
+    },
+    {
+        name:'Courses',
+        url:'/dashboard/courses',
+        Icon:<BiListUl size={20}/>
+    },
+    {
+        name:'User',
+        url:'/dashboard/user',
+        Icon:<BiUser size={20}/>
+    },
+    {
+        name:'Logout',
+        url:'/dashboard/logout',
+        Icon:<BiLogOut size={20}/>
     },
 ]

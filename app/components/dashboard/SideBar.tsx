@@ -1,6 +1,14 @@
 "use client"
-import React, { useState,Dispatch,SetStateAction } from 'react'
-import {FiX} from 'react-icons/fi'
+import React, { Dispatch,SetStateAction } from 'react'
+import {FiX} from 'react-icons/fi';
+
+import logo from '../../../assets/logo.png'
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import {BiHomeAlt2} from 'react-icons/bi'
+import {FiHome} from 'react-icons/fi'
+import { navItems } from '@/data';
+import Link from 'next/link';
 
 interface SidebarProps{
   isOpen:boolean;
@@ -8,6 +16,8 @@ interface SidebarProps{
 }
 
 function SideBar({isOpen,setIsOpen}:SidebarProps) {
+  const pathname=usePathname();
+  console.log(pathname)
   return (
     <aside
     //   ref={sidebar}
@@ -21,7 +31,24 @@ function SideBar({isOpen,setIsOpen}:SidebarProps) {
           </div>
         </div>
         {/* LOGO */}
-
+        <div className="flex items-center space-x-2 pl-4">
+          <Image width={50} src={logo} alt='logo' />
+          <p className='text-xl font-bold text-white'>Dashboard</p>
+        </div>
+        {/* MENU */}
+        <div className="mx-4 mt-8">
+          {/* NAV ITEM */}
+          {
+            navItems.map(({Icon,url,name},i)=>(
+          <Link href={url} key={i} className={`flex items-center text-white py-3 cursor-pointer ${pathname===url?'bg-white/20 backdrop-blur':''} rounded-lg space-x-2 my-2`}>
+            <div className="ml-2 ">
+            {Icon}
+            </div>
+            <h5>{name}</h5>
+          </Link>
+            ))
+          }
+        </div>
       </aside>
   )
 }
