@@ -1,22 +1,20 @@
+import { courseInfos } from '@/data'
 import Image from 'next/image'
 import React from 'react'
+import CourseInfoCard from '../components/card/CourseInfoCard'
 
 function DashboardPage() {
   return (
-    <div className='px-6 py-7 shadow-info'>
-      <div className="flex flex-col justify-between">
-        {/* TOP */}
-        <div className="">
-          <div className="flex">
-            {/* <Image/> */}
-            <div className="">
-              <h4></h4>
-              <p></p>
+    <div className="flex flex-col p-11">
+      {/* COURSE INFOS */}
+      <div className="grid grid-cols-12 gap-3">
+        {
+          courseInfos.map(({count,image,info,progress,tag,color})=>(
+            <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
+                <CourseInfoCard count={count} progress={progress} color={color} image={image} tag={tag} info={info}/>
             </div>
-          </div>
-        </div>
-        {/* PROGRESS */}
-        <div className=""></div>
+          ))
+        }
       </div>
     </div>
   )

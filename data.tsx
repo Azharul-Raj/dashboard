@@ -1,4 +1,8 @@
 import {BiHomeAlt2,BiListUl,BiUser,BiLogOut} from 'react-icons/bi'
+import complete from './assets/course/courseComplete.svg'
+import certificate from './assets/course/certificaste.svg'
+import progress from './assets/course/progress.svg'
+import total from './assets/course/totalCourse.svg'
 
 export const institutes=[
     "University of Dhaka",
@@ -52,5 +56,39 @@ export const navItems=[
         name:'Logout',
         url:'/dashboard/logout',
         Icon:<BiLogOut size={20}/>
+    },
+]
+
+export const courseInfos=[
+    {
+        info:'Course completed',
+        image:complete,
+        count:22,
+        progress:70,
+        tag:'complete',
+        color:'#4C6FFF'
+    },
+    {
+        info:'Certificate earned',
+        image:certificate,
+        count:20,
+        progress:20,
+        tag:'certificate',
+        color:'#FF7373'
+    },
+    {
+        info:'Course in progress',
+        image:progress,
+        count:25,
+        progress:30,
+        tag:'progress',
+        color:'#FBBC28'
+    },
+    {
+        info:'Total Course',
+        image:total,
+        count:86,
+        tag:'total',
+        color:'#4C6FFF'
     },
 ]
