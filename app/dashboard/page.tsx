@@ -29,7 +29,7 @@ function DashboardPage() {
       {/* CHARTS */}
       <div className="pt-4">
         <div className="p-6 shadow-info rounded-lg">
-          <LineChart
+          {/* <LineChart
           width={800}
           height={300}
           data={chartInfo.progress}
@@ -39,7 +39,7 @@ function DashboardPage() {
             <YAxis/>
             <Tooltip/>
             <Line type="monotone" dataKey="watchHours"  stroke="#82ca9d" />
-          </LineChart>
+          </LineChart> */}
         </div>
       </div>
     </div>

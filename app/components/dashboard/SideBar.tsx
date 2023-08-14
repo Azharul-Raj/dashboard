@@ -5,8 +5,6 @@ import {FiX} from 'react-icons/fi';
 import logo from '../../../assets/logo.png'
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import {BiHomeAlt2} from 'react-icons/bi'
-import {FiHome} from 'react-icons/fi'
 import { navItems } from '@/data';
 import Link from 'next/link';
 
@@ -17,7 +15,6 @@ interface SidebarProps{
 
 function SideBar({isOpen,setIsOpen}:SidebarProps) {
   const pathname=usePathname();
-  console.log(pathname)
   return (
     <aside
     //   ref={sidebar}
