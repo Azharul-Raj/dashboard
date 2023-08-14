@@ -3,6 +3,8 @@ import Image from 'next/image';
 import React from 'react';
 import ProgressBar from "@ramonak/react-progress-bar";
 
+import {FiArrowRight} from 'react-icons/fi'
+
 interface CourseInfoCardProps{
   image:string;
   info:string;
@@ -34,12 +36,17 @@ function CourseInfoCard({image,info,count,progress,tag,color}:CourseInfoCardProp
         </div>
         {/* PROGRESS */}
         <div className="mt-16">
-          {progress && 
+          {progress ?
           <div className='flex items-center justify-between'>
           <ProgressBar className='w-[80%]' customLabelStyles={{color:"transparent"}} completed={progress} bgColor={color} height='8px'/>
             <div className="w-[20%] ml-4">
               {progress}%
             </div>
+          </div>
+          :
+          <div className="flex items-center text-[#4C6FFF]">
+            <button className={`mr-3`}>View Courses</button>
+            <FiArrowRight/>
           </div>
            } 
         </div>

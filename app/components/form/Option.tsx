@@ -13,7 +13,7 @@ function Option({id,label,register,errors,options,required}:OptionProps) {
   return (
     <div className="py-2">
         <label className="block text-lg font-semibold" htmlFor={id}>{label}</label>
-        <select className="w-full px-1 py-[10px] border border-gray-700 rounded-[8px] focus:outline-none caret-gray-900" {...register(id,{required})} name="" id="">
+        <select className="w-full px-1 py-[10px] border border-gray-400 rounded-[8px] focus:outline-none caret-gray-900" {...register(id,{required})} name="" id="">
             {
                 options?.map((value,i)=>(
                     <option key={i} value={value}>{value}</option>

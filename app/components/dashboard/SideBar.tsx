@@ -40,7 +40,7 @@ function SideBar({isOpen,setIsOpen}:SidebarProps) {
           {/* NAV ITEM */}
           {
             navItems.map(({Icon,url,name},i)=>(
-          <Link href={url} key={i} className={`flex items-center text-white py-3 cursor-pointer ${pathname===url?'bg-white/20 backdrop-blur':''} rounded-lg space-x-2 my-2`}>
+          <Link href={url} key={i} className={`flex items-center text-white py-3 cursor-pointer ${pathname===url?'bg-blue-500/90 lg:bg-white/30 backdrop-blur':''} rounded-lg space-x-2 my-2`}>
             <div className="ml-2 ">
             {Icon}
             </div>
