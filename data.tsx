@@ -1,4 +1,5 @@
 import {BiHomeAlt2,BiListUl,BiUser,BiLogOut} from 'react-icons/bi'
+import {FiFilePlus} from 'react-icons/fi'
 import complete from './assets/course/courseComplete.svg'
 import certificate from './assets/course/certificaste.svg'
 import progress from './assets/course/progress.svg'
@@ -46,6 +47,11 @@ export const navItems=[
         name:'Courses',
         url:'/dashboard/courses',
         Icon:<BiListUl size={20}/>
+    },
+    {
+        name:'Add New Course',
+        url:'/dashboard/add-courses',
+        Icon:<FiFilePlus size={20}/>
     },
     {
         name:'Account',
