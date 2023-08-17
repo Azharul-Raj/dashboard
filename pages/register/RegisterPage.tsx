@@ -2,7 +2,7 @@
 import {useState} from 'react'
 import { useForm } from 'react-hook-form';
 import FormHeading from '../../app/components/form/FormHeading';
-import Input from '@/app/components/form/Input';
+import Input from '@/app/components/inputs/Input';
 
 export default function RegisterPage() {const {formState:{errors},register}=useForm()
 const [data,setData]=useState();

@@ -3,8 +3,8 @@ import {  useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import FormHeading from '../components/form/FormHeading';
-import Input from '../components/form/Input';
-import PasswordInput from '../components/form/PasswordInput';
+import Input from '../components/inputs/Input';
+import PasswordInput from '../components/inputs/PasswordInput';
 import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';

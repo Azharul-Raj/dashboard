@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Area, AreaChart, CartesianGrid, Legend, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis, ZAxis } from 'recharts';
 import ClientOnly from '../ClientOnly';
 import { chartInfo } from '@/data';
+import axios from 'axios';
 
 interface screenProps{
   width:number;
@@ -11,7 +12,12 @@ interface screenProps{
 }
 
 export default function ProgressChart() {
-  
+  const [cartData,setChartData]=useState([])
+  useEffect(()=>{
+    axios.get(`https://job-task-server.onrender.com/api/v1/dashboard/chart`)
+    .then(res=>setChartData(res.data.progress))
+    .catch(err=>console.log(err.message))
+  },[])
 
   return (
       <div className="w-full h-72 md:h-96">

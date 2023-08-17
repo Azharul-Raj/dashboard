@@ -1,18 +1,26 @@
 "use client"
 
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DashboardPageHeader from '@/app/components/dashboard/PageHeader';
 import { usePathname } from 'next/navigation'
 import {BiFilter} from 'react-icons/bi'
 import {BsFillGridFill} from 'react-icons/bs'
 import CourseCard from '@/app/components/card/CourseCard';
+import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
 const arrays=[1,2,3,4,5,6,7,8,9]
 
 function Courses() {
-  const [sortBy,setSortBy]=useState<string>()
+  const [sortBy,setSortBy]=useState<string>();
+  const [courses,setCourses]=useState([])
   const pathname=usePathname();
   const arr=pathname?.split('/').slice(2);
+  useEffect(()=>{
+    axios.get(`https://job-task-server.onrender.com/api/v1/course/list`)
+    .then(res=>setCourses(res.data.send_res))
+    .catch(err=>toast.error(err.message))
+  },[])
   return (
     <>
     {arr && <DashboardPageHeader paths={arr} target={arr[arr.length-1]}/>}
@@ -65,12 +73,19 @@ function Courses() {
       {/* COURSE SECTION */}
       <div className="grid grid-cols-12 gap-4">
         {
-          arrays?.map(d=>(
+          courses.length ?
+           (courses?.map(d=>(
             <div key={d} className="col-span-12 md:col-span-4 bg-white">
               <CourseCard/>
             </div>
-          ))
-        }
+          ))):(
+            arrays.map(d=>(
+              <div key={d} className="col-span-12 md:col-span-4 bg-white">
+              <CourseCard/>
+            </div>
+            ))
+          )
+        })
       </div>
     </div>
     </>

@@ -1,11 +1,18 @@
 "use client"
 
-import { chartInfo, courseInfos } from '@/data'
+import { useEffect, useState } from 'react';
+import {  courseInfos } from '@/data'
 import CourseInfoCard from '../components/card/CourseInfoCard'
 import ProgressChart from '../components/charts/ProgressChart';
+import axios from 'axios';
 
 function DashboardPage() {
- 
+  const [statistics,setStatistics]=useState()
+ useEffect(()=>{
+  axios.get(`https://job-task-server.onrender.com/api/v1/dashboard/statics`)
+  .then(res=>setStatistics(res.data.statics))
+  .catch(err=>console.log(err.message))
+ },[])
   return (
     <div className="flex flex-col p-8 md:p-11">
       {/* COURSE INFOS */}

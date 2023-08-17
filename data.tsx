@@ -143,4 +143,79 @@ export const chartInfo={
     "message": "Statics fetched successfully!"
   }
 
-  
+export const course=[
+    {
+        lesson:"COURSE 1 - INTRODUCT",
+        chapters:[
+            {
+                unit:"u1",
+                name:"Presentation"
+            },
+            {
+                unit:"u2",
+                name:"Job opportunities..."
+            },
+            {
+                unit:"u3",
+                name:"How to get the most..."
+            },
+            {
+                unit:"u4",
+                name:"How to get the most..."
+            },
+            {
+                unit:"u5",
+                name:"Interface and the..."
+            },
+            {
+                unit:"u6",
+                name:"Volume with vectors"
+            },
+            {
+                unit:"u7",
+                name:"Symmetry, connector..."
+            },
+            {
+                unit:"u8",
+                name:"Add and remove lines..."
+            }
+        ]
+    },
+    {
+        lesson:"COURSE 2 - Learn Manufacturing",
+        chapters:[
+            {
+                unit:"u1",
+                name:"Spontaneous chara..."
+            },
+            {
+                unit:"u2",
+                name:"Deformers"
+            },
+            {
+                unit:"u3",
+                name:"Mograph (cloner)"
+            },
+            {
+                unit:"u4",
+                name:"How to get the most..."
+            },
+            {
+                unit:"u5",
+                name:"Interface and the..."
+            },
+            {
+                unit:"u6",
+                name:"Volume with vectors"
+            },
+            {
+                unit:"u7",
+                name:"Symmetry, connector..."
+            },
+            {
+                unit:"u8",
+                name:"Practice: first charac..."
+            }
+        ]
+    },
+]

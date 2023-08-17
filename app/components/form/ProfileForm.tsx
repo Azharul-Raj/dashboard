@@ -2,9 +2,9 @@
 import React from 'react'
 import FormHeading from './FormHeading';
 import { useForm } from 'react-hook-form';
-import Input from './Input';
-import Option from './Option';
-import TextArea from './TextArea';
+import Input from '../inputs/Input';
+import Option from '../inputs/Option';
+import TextArea from '../inputs/TextArea';
 import axios from 'axios';
 
 interface profileProps{
@@ -21,7 +21,7 @@ interface profileProps{
 function ProfileForm({profile}:profileProps) {
     const {register,handleSubmit,formState:{errors}}=useForm();
     //@ts-ignore
-    const {birth_date,cover_letter,email,full_name,gender,phone}=profile
+    const {birth_date,cover_letter,email,full_name,phone}=profile
     const handleUpdate=async(data:any)=>{
         try {
             const response= await axios.post(`https://job-task-server.onrender.com/api/v1/user/details/update`,data)
@@ -61,7 +61,7 @@ function ProfileForm({profile}:profileProps) {
             errors={errors}
 
             />
-            <button className='bg-form-primary py-4 px-7 text-white font-semibold w-full lg:w-1/5 rounded-md' type='submit'>
+            <button className='bg-form-primary py-4 px-7 text-white font-semibold w-full :w-1/5 rounded-md' type='submit'>
                 Update 
             </button>
         </form>

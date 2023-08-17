@@ -8,7 +8,7 @@ function DashboardPageHeader({paths,target}:{paths?:string[],target:string}) {
             paths && paths.map(path=>(
                 <p key={path} className=''>
                  {">"}
-                 <span key={path} className={`${path==target?'text-form-primary':''}`}> {path}</span>
+                 <span key={path} className={`${path==target?'text-form-primary':''}`}> {path.replace(/^a-zA-Z0-9 ]/g, '')}</span>
                  </p>
             ))
             }</div>

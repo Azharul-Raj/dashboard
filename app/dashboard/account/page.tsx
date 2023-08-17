@@ -9,7 +9,7 @@ import axios from 'axios';
 import { PuffLoader } from 'react-spinners';
 
 function Profile() {
-  const [profile,setProfile]=useState()
+  let [profile,setProfile]=useState()
   const pathname=usePathname();
   const arr=pathname?.split('/').slice(2)
   useEffect(()=>{

@@ -8,13 +8,13 @@ import { Poppins } from 'next/font/google';
 import { FieldValues, useForm } from 'react-hook-form';
 import { toast} from 'react-hot-toast'
 import FormHeading from './components/form/FormHeading';
-import Input from './components/form/Input';
-import Option from './components/form/Option';
+import Input from './components/inputs/Input';
+import Option from './components/inputs/Option';
 import { formParts, institutes, levels } from '@/data';
 
 
 import success from '../assets/Frame.svg';
-import PasswordInput from './components/form/PasswordInput';
+import PasswordInput from './components/inputs/PasswordInput';
 import ClientOnly from './components/ClientOnly';
 
 const poppins=Poppins({subsets:['latin'],weight:['200','400','500']})

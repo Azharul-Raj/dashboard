@@ -1,10 +1,10 @@
 "use client"
 
 import DashboardPageHeader from "@/app/components/dashboard/PageHeader";
-import FileInput from "@/app/components/form/FileInput";
+import FileInput from "@/app/components/inputs/FileInput";
 import FormHeading from "@/app/components/form/FormHeading";
-import Input from "@/app/components/form/Input";
-import TextArea from "@/app/components/form/TextArea";
+import Input from "@/app/components/inputs/Input";
+import TextArea from "@/app/components/inputs/TextArea";
 import axios from "axios";
 import { usePathname } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -35,15 +35,15 @@ function AddCourse() {
               {/* LEFT FORM */}
               <div className="col-span-12 md:col-span-6">
                 <FormHeading heading="File Upload" align="text-left"/>
-                <FileInput id="content" label="Main Course File" register={register} placeholder="Upload" required />
-                <FileInput id="thumbnail" label="Thumbnail File" register={register} placeholder="Upload" required small/>
-                <FileInput id="intro" label="Introduction File" register={register} placeholder="Upload" required small/>
+                <FileInput id="main_course_file" label="Main Course File" register={register} placeholder="Upload" required />
+                <FileInput id="thumbnail_file" label="Thumbnail File" register={register} placeholder="Upload" required small/>
+                <FileInput id="introduction_file" label="Introduction File" register={register} placeholder="Upload" required small/>
               </div>              
               {/* RIGHT FORM */}
               <div className="col-span-12 md:col-span-6">
               <FormHeading heading="Other Information" align="text-left"/>
               <Input id="tags" label="Tags" placeholder="Type here...." register={register} required border errors={errors}/>
-              <Input id="lesson" label="Lesson Name" placeholder="Type here...." register={register} required border errors={errors}/>
+              <Input id="lesson_name" label="Lesson Name" placeholder="Type here...." register={register} required border errors={errors}/>
               <TextArea id="description" label="Description / Overview" placeholder="Type here ...." register={register} required/>
               <Input id="price" label="Price" placeholder="$" register={register} required border errors={errors}/>
               </div>              

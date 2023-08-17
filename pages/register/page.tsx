@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
 import FormHeading from '../../app/components/form/FormHeading';
-import Input from '../../app/components/form/Input';
-import Option from '../../app/components/form/Option';
+import Input from '../../app/components/inputs/Input';
+import Option from '../../app/components/inputs/Option';
 import ClientOnly from '../../app/components/ClientOnly';
 
 export default function RegisterPage() {

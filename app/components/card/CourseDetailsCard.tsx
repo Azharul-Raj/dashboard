@@ -7,17 +7,16 @@ import author from '../../../assets/course/author.svg'
 
 function CourseDetailsCard() {
   const [section,setSection]=useState("overview");
-  const sections=['overview',]
   return (
     <div className='bg-white p-7 rounded-lg'>
         <Image src={blogImage} alt='course-thumbnail'/>
-        <h4 className='text-gray-900 text-[24px] font-semibold'>Artificial Intelligence & Machine Learning</h4>
+        <h4 className='text-gray-900 text-[24px] md:py-4 font-semibold'>Artificial Intelligence & Machine Learning</h4>
         <p className='text-gray-500 py-2'>By <span className='font-semibold text-gray-900 '>Simon Shaw,</span> Illustrator and 3D designer</p>
-        <div className="flex items-center">
+        <div className="flex items-center md:py-2">
             <Image width={50} src={author} alt='author'/>
             <p className='font-semibold ml-4'>Simon Shaw</p>
         </div>
-        <div className="flex space-x-4">
+        <div className="flex space-x-4 md:py-2">
           <button
           onClick={()=>setSection('overview')}
           className={`${section=='overview'?'text-white bg-[#FF7800]':'text-gray-900'} px-2 py-1 rounded-full`}
