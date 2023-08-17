@@ -5,16 +5,25 @@ import FileInput from "@/app/components/form/FileInput";
 import FormHeading from "@/app/components/form/FormHeading";
 import Input from "@/app/components/form/Input";
 import TextArea from "@/app/components/form/TextArea";
+import axios from "axios";
 import { usePathname } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 
 function AddCourse() {
   const {register,handleSubmit,formState:{errors}}=useForm()
   const pathname = usePathname();
   const arr = pathname?.split('/').slice(2);
 
-  const handleAddCourse=(data:any)=>{
-    console.log(data)
+  const handleAddCourse=async(data:any)=>{
+    try {
+      const response=await axios.post(`https://job-task-server.onrender.com/api/v1/course/create`,data)
+      if(response.data){
+        toast.success('Course added successfully.')
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
   return (
     <>
@@ -39,7 +48,7 @@ function AddCourse() {
               <Input id="price" label="Price" placeholder="$" register={register} required border errors={errors}/>
               </div>              
             </div>
-            <button className='bg-form-primary py-4 px-7 text-white font-semibold w-1/5 rounded-md' type='submit'>
+            <button className='bg-form-primary py-4 px-7 text-white font-semibold w-full md:w-1/5 rounded-md' type='submit'>
                 Submit
             </button>
           </form>

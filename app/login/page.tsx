@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import FormHeading from '../components/form/FormHeading';
@@ -7,9 +7,12 @@ import Input from '../components/form/Input';
 import PasswordInput from '../components/form/PasswordInput';
 import Link from 'next/link';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-hot-toast/headless';
 
 
 function Login() {
+  const router=useRouter()
   const {register,handleSubmit,}=useForm();
   const [isPassword,setIsPassword]=useState(true);
   const [user,setUser]=useState()
@@ -17,10 +20,14 @@ function Login() {
   const handleLogin=async(data:any)=>{
     try {
       const response=await axios.post('https://job-task-server.onrender.com/api/v1/user/login',data);
-
-      console.log(response.data)
-      console.log('here')
-    } catch (error) {
+      if(response.data){
+        const token=response.data.data.token;
+        localStorage.setItem('token',token)
+        toast.success('Login Success.')
+        router.push('/dashboard')
+      }
+    } catch (error:any) {
+      toast.error(error.message)
       console.log(error)
     }    
   }

@@ -1,12 +1,12 @@
 "use client"
 
+import axios from 'axios'
 import { useState } from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 import { Poppins } from 'next/font/google';
 import { FieldValues, useForm } from 'react-hook-form';
-import axios from 'axios'
-
+import { toast} from 'react-hot-toast'
 import FormHeading from './components/form/FormHeading';
 import Input from './components/form/Input';
 import Option from './components/form/Option';
@@ -15,10 +15,11 @@ import { formParts, institutes, levels } from '@/data';
 
 import success from '../assets/Frame.svg';
 import PasswordInput from './components/form/PasswordInput';
+import ClientOnly from './components/ClientOnly';
 
 const poppins=Poppins({subsets:['latin'],weight:['200','400','500']})
 
-axios.defaults.baseURL=`https://job-task-server.onrender.com/api/v1`
+
 
 enum STEPS {
     PERSONAL = 1,
@@ -41,19 +42,27 @@ export default function RegisterPage() {
         if (step !== STEPS.SECURITY) {
             return onNext()
         }
-
-        return onNext()
+        axios.post('https://job-task-server.onrender.com/api/v1/user/register',data)
+        .then(res=>{
+            if(res.data){
+                console.log(res.data)
+                return onNext()
+            }
+        }).catch(err=>{
+            console.log(err)
+            toast.error(err.message)
+        })
     }
     let formBody;
     if (step === STEPS.PERSONAL) {
         formBody =
             <>
                 <FormHeading heading='Personal Information' />
-                <Input placeholder='Type your Name' label='Full Name' register={register} id='name' required errors={errors} />
+                <Input placeholder='Type your Name' label='Full Name' register={register} id='full_name' required errors={errors} />
                 <Input placeholder='Your Email' label='Email Address' type='email' register={register} id='email' required errors={errors} />
                 <Option label='Position' required id='position' register={register} options={['Student', 'Teacher']} errors={errors} />
-                <Option label='Institute Name' required id='institute' register={register} options={institutes} errors={errors} />
-                <Option label='Education Level' required id='level' register={register} options={levels} errors={errors} />
+                <Option label='Institute Name' required id='institution_name' register={register} options={institutes} errors={errors} />
+                <Option label='Education Level' required id='education_level' register={register} options={levels} errors={errors} />
             </>
     }
     if (step === STEPS.SECURITY) {
@@ -61,7 +70,7 @@ export default function RegisterPage() {
             <>
                 <FormHeading heading='Security' />
                 <PasswordInput id='password' label='Password' type={isPassword?'password':'text'} placeholder='Your Password' register={register} required isPassword={isPassword} setIsPassword={setIsPassword}/>
-                <PasswordInput id='confirm-pass' label='Confirm Password' type={isPassword?'password':'text'} placeholder='Confirm Password' register={register} required isPassword={isPassword} setIsPassword={setIsPassword}/>
+                <PasswordInput id='confirm_password' label='Confirm Password' type={isPassword?'password':'text'} placeholder='Confirm Password' register={register} required isPassword={isPassword} setIsPassword={setIsPassword}/>
             </>
     }
     if (step === STEPS.CONFIRM) {
@@ -79,7 +88,6 @@ export default function RegisterPage() {
             </>
     }
     return (
-        // <ClientOnly>
         <section className="flex min-h-screen flex-col items-center my-[2%]">
                 {/* First icon part */}
                 <div className=" flex justify-between items-center">
@@ -101,12 +109,12 @@ export default function RegisterPage() {
                 </div>
             {/* The form will be here */}
             <div className="w-full md:flex justify-center items-center ">
-                <form className='mx-2 lg:w-[600px]' onSubmit={handleSubmit(onSubmit)} >
+                <form className='px-2 w-full md:w-[600px]' onSubmit={handleSubmit(onSubmit)} >
                     {formBody}
                     {step!==3?<button className='w-full my-2 text-white bg-form-primary rounded-lg py-2' type='submit'>{step === 2 ? 'Confirm' : "Next"}</button>
                 :
                 <div className="text-center">
-                <button className='text-base text-form-primary rounded-lg font-semibold py-3 px-8 border-2 border-form-primary'>Go to Home</button>   
+                <Link href={`/dashboard`} className='text-base text-form-primary rounded-lg font-semibold py-3 px-8 border-2 border-form-primary'>Go to Home</Link>   
                 </div> 
                 }
 
@@ -116,6 +124,5 @@ export default function RegisterPage() {
                 <p className='text-gray-800 font-semibold'>Already Have An Account? <Link href={'/login'} className='text-blue-600 underline'>Log In</Link></p>
             </div>}
         </section>
-        // </ClientOnly>
     )
 }
