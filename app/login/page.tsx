@@ -42,7 +42,7 @@ function Login() {
         <button className='w-full my-2 text-white bg-form-primary rounded-lg py-2' type='submit'>Log In</button>
         </form>
         <div className="text-center">
-        <p className='text-gray-800 font-semibold'>Don't Have An Account? <Link href={'/'} className='text-blue-600 underline'>Register Now</Link></p>
+        <p className='text-gray-800 font-semibold'>Don&apos;t Have An Account? <Link href={'/'} className='text-blue-600 underline'>Register Now</Link></p>
         </div>
       </div>
 
